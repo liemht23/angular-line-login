@@ -9,6 +9,7 @@ import liff from '@line/liff';
 })
 export class AppComponent implements OnInit {
   title = 'angular-line-login';
+  idToken: string | null = '';
   accessToken: string | null = '';
   refreshToken: string | null = '';
   displayName: string | undefined = '';
@@ -31,8 +32,11 @@ export class AppComponent implements OnInit {
   }
 
   runApp(): void {
+    const idToken = liff.getIDToken();
     const accessToken = liff.getAccessToken();
+    console.log(idToken);
     console.log(accessToken);
+    this.idToken = idToken;
     this.accessToken = accessToken;
     liff.getProfile().then(profile => {
       console.log(profile);
